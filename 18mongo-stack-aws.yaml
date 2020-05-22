@@ -19,13 +19,14 @@ spec:
               - name: mongo-persistent-storage
                 mountPath : /data/db
       volumes: #source where actual files will be stored
-        # # when storage is in the same server static way
+
+        # # when storage is in the SAME SERVER STATIC static way
         # - name: mongo-persistent-storage
         #     hostPath: #hostPath for using storage of server
         #     path: /mnt/mymongodbdrive/dbdirectory
         #     type: DirectoryOrCreate
 
-        # when storage is in the same server PVC way
+        # when storage is in the PVC way (Doesnot matter same server or EBS block)
         - name: mongo-persistent-storage
           persistentVolumeClaim: 
             claimName: mongo-pvc
