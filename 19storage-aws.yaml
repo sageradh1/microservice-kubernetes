@@ -34,5 +34,5 @@ kind: StorageClass
 metadata:
   name: cloud-ssd-k8tutorial
 provisioner: kubernetes.io/aws-ebs
-parameter:
+parameters:
   type: gp2
