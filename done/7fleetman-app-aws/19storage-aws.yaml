@@ -1,0 +1,38 @@
+# What do want?
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+spec:
+  storageClassName: cloud-ssd-k8tutorial
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 7Gi
+---
+# How do we want it implemented
+
+############ locally ###################
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: local-storage
+# spec:
+#   storageClassName: mylocalstorage
+#   capacity:
+#     storage: 20Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   hostPath:
+#     path: "/mnt/some new/directory/structure/"
+#     type: DirectoryOrCreate
+
+############ AWS ###################
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: cloud-ssd-k8tutorial
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
